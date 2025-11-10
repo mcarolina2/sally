@@ -1,63 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width">
-		<title>Sally | Assistente Virtual</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</style>
-	</head>
-	<body>
-	<div id="sfcgsb84u4j61a1gw713ft2sek3rbfqmsqj"></div><script type="text/javascript" src="https://counter7.stat.ovh/private/counter.js?c=gsb84u4j61a1gw713ft2sek3rbfqmsqj&down=async" async></script></a><noscript></a></noscript>
-		<div class="box">
-		<nav>
-		<ul class="navegacao">
-		<li><a href="https://salaacoes.blogspot.com/">Voltar ao Blog</li></a>
-		<li><a href="https://api.whatsapp.com/send?phone=5583987168376&text=Olá,%20desejo%20agendar%20um%20atendimento." target="_blank">WhatsApp da Sally</li></a>			
-		<li><a href="http://t.me/SallyUFPBbot" target="_blank">Sally no Telegram</li></a>
-		</ul>
-		</nav>
-		</div>
-		</header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Sally | Assistente Virtual</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
-		<main>
-			<section class="section-main">
-				<img class="logotipo-sally" src="img/logotipo-sally-2.png" alt="Sally">
+<body>
+  <!-- Contador de visitas -->
+  <div id="sfcgsb84u4j61a1gw713ft2sek3rbfqmsqj"></div>
+  <script type="text/javascript" src="https://counter7.stat.ovh/private/counter.js?c=gsb84u4j61a1gw713ft2sek3rbfqmsqj&down=async" async></script>
+  <noscript></noscript>
 
-				<p>Olá, eu sou a <strong>Sally</strong>, a Assistente Virtual da Sala de Ações - UFPB.
-				Fui criada com <br> o objetivo de ajudar você a entender com facilidade assuntos referentes a <br> Educação Financeira.
-				<h1><p>Para iniciarmos a nossa conversa, digite <strong>"Oi!"</strong></p></h1>
-			</section>
+  <!-- Navegação -->
+  <div class="box">
+    <nav>
+      <ul class="navegacao">
+        <li><a href="https://salaacoes.blogspot.com/">Voltar ao Blog</a></li>
+        <li><a href="https://api.whatsapp.com/send?phone=5583987168376&text=Olá,%20desejo%20agendar%20um%20atendimento." target="_blank">WhatsApp da Sally</a></li>
+        <li><a href="http://t.me/SallyUFPBbot" target="_blank">Sally no Telegram</a></li>
+      </ul>
+    </nav>
+  </div>
 
-			<section class="dialogflow-sally">
+  <!-- Conteúdo principal -->
+  <main>
+    <section class="section-main">
+      <img class="logotipo-sally" src="img/logotipo-sally-2.png" alt="Sally">
 
-					<div class="bot-sally">
-					 <iframe
-    						allow="microphone;"
-    						width="320"
-    						height="500"
-    						src="https://console.dialogflow.com/api-client/demo/embedded/ed64e3bc-e5b0-490b-ae9e-745fb523d158">
-					</iframe>
-				</div>
-			</section>
+      <p>
+        Olá, eu sou a <strong>Sally</strong>, a Assistente Virtual da Sala de Ações - UFPB.
+        Fui criada com o objetivo de ajudar você a entender com facilidade assuntos referentes à
+        <br> Educação Financeira.
+      </p>
 
-		</main>
+      <h1>Para iniciarmos a nossa conversa, digite <strong>"Oi!"</strong></h1>
 
-		<footer>
-			<br>
-			<br>
-			<br>
-			<a href="https://salaacoes.blogspot.com/"> 
-			<img src="img/logotipo-sala-f.png" width="127,8" height="70,8">
-			
-			<a href="https://www.ufpb.br/"> 
-			<img src="img/logotipo-ufpb-f.png" width="49,5" height="70,8">
-				
-			<a href="https://www.instagram.com/labimec/"> 
-			<img src="img/logotipo-labimec.png" width="49,5" height="70,8">
-			
-			<a href="https://salaacoes.blogspot.com/"> 
-			<p class="copyright">&copy; Copyright - Sala de Ações - 2021</p>
-		</footer>
-	</body>
+      <!-- Caixa lateral do chat -->
+      <div class="chat-lateral">
+        <h2>Para iniciarmos a nossa conversa, digite Oi!</h2>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="chat-input-area">
+          <input type="text" id="user-input" placeholder="Digite sua mensagem...">
+          <button onclick="sendMessage()">Enviar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <br><br><br>
+    <a href="https://salaacoes.blogspot.com/">
+      <img src="img/logotipo-sala-f.png" width="128" height="71" alt="Sala de Ações">
+    </a>
+    <a href="https://www.ufpb.br/">
+      <img src="img/logotipo-ufpb-f.png" width="50" height="71" alt="UFPB">
+    </a>
+    <a href="https://www.instagram.com/labimec/">
+      <img src="img/logotipo-labimec.png" width="50" height="71" alt="Labimec">
+    </a>
+    <p class="copyright">&copy; Copyright - Sala de Ações - 2021</p>
+  </footer>
+
+  <!-- Script do chat -->
+  <script>
+    const userId = "user_" + Date.now();
+
+    async function sendMessage() {
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chatBox = document.getElementById("chat-box");
+      chatBox.innerHTML += `<p><b>Você:</b> ${message}</p>`;
+      input.value = "";
+
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message, userId })
+        });
+
+        const data = await response.json();
+        chatBox.innerHTML += `<p><b>Sally:</b> ${data.response}</p>`;
+      } catch (error) {
+        chatBox.innerHTML += `<p><b>Sally:</b> Erro ao conectar com o servidor.</p>`;
+      }
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
 </html>
